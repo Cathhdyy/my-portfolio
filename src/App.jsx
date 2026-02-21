@@ -12,6 +12,7 @@ const Portfolio = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [scrollY, setScrollY] = useState(0);
 
   // Custom Cursor tracking & Scroll handling
   useEffect(() => {
@@ -20,6 +21,7 @@ const Portfolio = () => {
     };
 
     const handleScroll = () => {
+      setScrollY(window.scrollY);
       setIsScrolled(window.scrollY > 50);
       const sections = ['home', 'about', 'projects', 'skills', 'education', 'contact'];
       const current = sections.find(section => {
@@ -91,7 +93,8 @@ const Portfolio = () => {
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 80s linear infinite;
+          width: max-content;
         }
         .animate-marquee:hover {
           animation-play-state: paused;
@@ -138,8 +141,66 @@ const Portfolio = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 z-10">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col items-center text-center">
+      <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 z-10 overflow-hidden">
+        
+        {/* Subtle Code Background Overlay with Fade & Parallax */}
+        <div 
+          className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)] select-none"
+          style={{ 
+            opacity: Math.max(0, 0.15 * (1 - scrollY / 600)),
+            transform: `translateY(${scrollY * 0.4}px)`
+          }}
+        >
+          <pre className="text-[10px] sm:text-[11px] md:text-xs font-mono text-cyan-500/40 leading-relaxed whitespace-pre w-full h-full p-8 flex flex-col justify-start md:justify-center overflow-hidden">
+{`import numpy as np
+import tensorflow as tf
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from fastapi import FastAPI
+from pymongo import MongoClient
+
+class VisionLanguageModel:
+    def __init__(self, model_name="llava-hf/llava-1.5-7b-hf"):
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.model = AutoModelForCausalLM.from_pretrained(model_name)
+        self.device = "cuda" if tf.test.is_built_with_cuda() else "cpu"
+
+    def process_data_stream(self, image_tensor, context_prompt):
+        inputs = self.tokenizer(context_prompt, return_tensors="pt")
+        features = self.model.extract_features(image_tensor, inputs)
+        return self.decode(features)
+
+def initialize_database_connection(uri):
+    client = MongoClient(uri)
+    db = client.cluster0
+    return db.users, db.analytics
+
+async def train_neural_architecture(input_shape):
+    model = tf.keras.Sequential([
+        tf.keras.layers.Conv2D(64, (3, 3), activation='relu', input_shape=input_shape),
+        tf.keras.layers.MaxPooling2D(2, 2),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(256, activation='relu'),
+        tf.keras.layers.Dropout(0.5),
+        tf.keras.layers.Dense(10, activation='softmax')
+    ])
+    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
+    return model
+
+# Initiating core systems...
+if __name__ == "__main__":
+    vlm_agent = VisionLanguageModel()
+    db_conn = initialize_database_connection(API_URL)
+    print("Agent online. Awaiting data streams...")
+    # Ready for autonomous execution`}
+          </pre>
+        </div>
+
+        {/* Ambient Glows */}
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen z-0"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen z-0"></div>
+
+        <div className="max-w-5xl mx-auto px-6 flex flex-col items-center text-center relative z-10">
+          
           <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 text-xs font-medium backdrop-blur-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -169,35 +230,42 @@ const Portfolio = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-600">
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-600 z-10">
           <ChevronDown size={28} />
         </div>
       </section>
 
       {/* Infinite Scrolling Tech Marquee */}
-      <div className="w-full py-8 border-y border-white/5 bg-white/[0.02] overflow-hidden flex relative z-10">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050810] to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050810] to-transparent z-10"></div>
-        <div className="flex w-[200%] animate-marquee">
-          <div className="flex w-1/2 justify-around items-center">
+      <div className="w-full mt-12 py-6 border-y border-white/10 bg-[#050810]/80 overflow-hidden flex items-center relative z-10">
+        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#050810] to-transparent z-20 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#050810] to-transparent z-20 pointer-events-none"></div>
+        
+        <div className="flex animate-marquee items-center group">
+          <div className="flex items-center justify-around w-max">
             {marqueeSkills.map((skill, i) => (
-              <span key={`a-${i}`} className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-600 to-slate-800 uppercase tracking-widest px-8">
-                {skill}
-              </span>
+              <div key={`a-${i}`} className="flex items-center">
+                <span className="text-5xl md:text-7xl font-black text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.5)] hover:[-webkit-text-stroke:1.5px_rgba(6,182,212,0.9)] hover:text-cyan-500/20 uppercase tracking-widest px-8 md:px-12 transition-all duration-300 cursor-default">
+                  {skill}
+                </span>
+                <span className="text-cyan-500/50 text-3xl">✦</span>
+              </div>
             ))}
           </div>
-          <div className="flex w-1/2 justify-around items-center">
+          <div className="flex items-center justify-around w-max">
             {marqueeSkills.map((skill, i) => (
-              <span key={`b-${i}`} className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-600 to-slate-800 uppercase tracking-widest px-8">
-                {skill}
-              </span>
+              <div key={`b-${i}`} className="flex items-center">
+                <span className="text-5xl md:text-7xl font-black text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.5)] hover:[-webkit-text-stroke:1.5px_rgba(6,182,212,0.9)] hover:text-cyan-500/20 uppercase tracking-widest px-8 md:px-12 transition-all duration-300 cursor-default">
+                  {skill}
+                </span>
+                <span className="text-cyan-500/50 text-3xl">✦</span>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
       {/* About Section */}
-      <section id="about" className="py-32 relative z-10">
+      <section id="about" className="pt-16 pb-32 relative z-10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-5 flex flex-col justify-center">

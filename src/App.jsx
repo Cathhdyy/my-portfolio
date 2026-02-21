@@ -3,7 +3,8 @@ import {
   Mail, Phone, MapPin, Linkedin, Code, Database, Server, 
   BrainCircuit, Award, GraduationCap, ChevronDown, 
   Globe, ExternalLink, Cpu, LayoutTemplate, Sparkles, 
-  Rocket, Layers, ArrowUpRight, Terminal, Activity
+  Rocket, Layers, ArrowUpRight, Terminal, Activity, Github,
+  Music, Play
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -65,6 +66,14 @@ const Portfolio = () => {
       description: 'A platform focused on connecting brands with the right content creators using intelligent matching, structured campaign management, and collaboration analytics to make influencer marketing more efficient and accessible.',
       tags: ['AI Matching', 'Platform Development', 'Analytics', 'Creator Economy'],
       featured: true
+    },
+    {
+      title: 'Class Alert Agent',
+      status: 'Live Automation',
+      description: 'An AI-based automation project built to send email alerts for class schedules. The goal is simple — get notified before a class starts so I never miss one again. Uses Python, Brevo (SMTP API), and Render for cloud deployment.',
+      tags: ['Python', 'Automation', 'SMTP API', 'Render'],
+      featured: false,
+      github: 'https://github.com/Cathhdyy/Reminder-Bot'
     },
     {
       title: 'Database Management API',
@@ -146,16 +155,21 @@ const Portfolio = () => {
           </h1>
           
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mb-12 leading-relaxed font-light">
-            Hi, I'm <span className="text-white font-medium">Sanskar Sharma</span>. I specialize in Programming, Artificial Intelligence, and Machine Learning. Based in India, I engineer systems that connect ideas with impact.
+            Hi, I'm <span className="text-white font-medium">Sanskar Sharma</span>. I specialize in Programming, Artificial Intelligence, and Machine Learning. Based in India, I engineer systems by day and produce music as <span className="text-[#1DB954] font-medium">Sansskar</span> by night.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             <button onClick={() => scrollTo('projects')} className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-bold hover:scale-105 transition-transform flex items-center justify-center gap-2">
               View My Work <ArrowUpRight size={18} />
             </button>
-            <a href="https://www.linkedin.com/in/ssanskar" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 text-white font-medium border border-white/10 hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
-              <Linkedin size={18} /> Connect on LinkedIn
-            </a>
+            <div className="flex gap-4 w-full sm:w-auto">
+              <a href="https://www.linkedin.com/in/ssanskar" target="_blank" rel="noreferrer" className="flex-1 sm:flex-none px-6 py-4 rounded-full bg-white/5 text-white font-medium border border-white/10 hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+                <Linkedin size={18} /> <span className="hidden sm:inline">LinkedIn</span>
+              </a>
+              <a href="https://github.com/Cathhdyy" target="_blank" rel="noreferrer" className="flex-1 sm:flex-none px-6 py-4 rounded-full bg-white/5 text-white font-medium border border-white/10 hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+                <Github size={18} /> <span className="hidden sm:inline">GitHub</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -167,7 +181,7 @@ const Portfolio = () => {
       {/* About Section */}
       <section id="about" className="py-32 relative border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-5 flex flex-col justify-center">
               <h2 className="text-sm font-bold tracking-widest text-cyan-400 uppercase mb-3">About Me</h2>
               <h3 className="text-4xl font-bold text-white mb-6 tracking-tight">Tech enthusiast & problem solver.</h3>
@@ -176,21 +190,60 @@ const Portfolio = () => {
               </p>
             </div>
             
-            <div className="lg:col-span-7 grid grid-cols-2 gap-4">
-              <div className="col-span-2 sm:col-span-1 p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-center">
-                <MapPin className="text-cyan-400 mb-4" size={32} />
-                <h4 className="text-white font-bold text-xl mb-1">Location</h4>
-                <p className="text-slate-400">Siliguri, West Bengal, India</p>
+            <div className="lg:col-span-7 grid grid-cols-2 gap-6">
+              
+              {/* Location Card */}
+              <div className="col-span-2 sm:col-span-1 p-8 rounded-[2rem] bg-[#0d1425]/50 backdrop-blur-md border border-white/5 hover:border-cyan-500/30 transition-all duration-300 group hover:-translate-y-1 flex flex-col justify-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[50px] pointer-events-none group-hover:bg-cyan-500/20 transition-colors"></div>
+                <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
+                  <MapPin size={28} />
+                </div>
+                <h4 className="text-white font-bold text-2xl mb-2">Location</h4>
+                <p className="text-slate-400 font-medium leading-relaxed">Siliguri, West Bengal<br/>India</p>
               </div>
-              <div className="col-span-2 sm:col-span-1 p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-center">
-                <Globe className="text-blue-400 mb-4" size={32} />
-                <h4 className="text-white font-bold text-xl mb-3">Languages</h4>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm"><span className="text-slate-300">Nepali</span> <span className="text-slate-500">Native</span></div>
-                  <div className="flex justify-between text-sm"><span className="text-slate-300">English</span> <span className="text-slate-500">Professional</span></div>
-                  <div className="flex justify-between text-sm"><span className="text-slate-300">Hindi</span> <span className="text-slate-500">Limited</span></div>
+              
+              {/* Languages Card */}
+              <div className="col-span-2 sm:col-span-1 p-8 rounded-[2rem] bg-[#0d1425]/50 backdrop-blur-md border border-white/5 hover:border-blue-500/30 transition-all duration-300 group hover:-translate-y-1 flex flex-col justify-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[50px] pointer-events-none group-hover:bg-blue-500/20 transition-colors"></div>
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                  <Globe size={28} />
+                </div>
+                <h4 className="text-white font-bold text-2xl mb-4">Languages</h4>
+                <div className="space-y-3 w-full">
+                  <div className="flex justify-between items-center"><span className="text-slate-200 font-medium">Nepali</span> <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-slate-400 text-xs font-semibold">Native</span></div>
+                  <div className="flex justify-between items-center"><span className="text-slate-200 font-medium">English</span> <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-slate-400 text-xs font-semibold">Professional</span></div>
+                  <div className="flex justify-between items-center"><span className="text-slate-200 font-medium">Hindi</span> <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-slate-400 text-xs font-semibold">Limited</span></div>
                 </div>
               </div>
+
+              {/* Music / Spotify Feature Card */}
+              <div className="col-span-2 p-8 md:p-10 rounded-[2rem] bg-[#0d1425]/80 backdrop-blur-md border border-white/5 hover:border-[#1DB954]/50 transition-all duration-500 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden group hover:-translate-y-1 shadow-lg hover:shadow-[#1DB954]/10">
+                <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#1DB954]/20 rounded-full blur-[80px] pointer-events-none group-hover:bg-[#1DB954]/30 transition-colors duration-500"></div>
+                
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-[#1ed760] to-[#1DB954] p-[2px] flex-shrink-0 relative shadow-[0_8px_30px_rgba(29,185,84,0.3)] group-hover:scale-105 transition-transform duration-500">
+                   <div className="w-full h-full rounded-2xl bg-[#0a0f1c] flex items-center justify-center overflow-hidden">
+                      <Music className="text-[#1DB954] opacity-80" size={40} />
+                   </div>
+                </div>
+                
+                <div className="flex-1 text-center sm:text-left z-10 w-full">
+                  <div className="flex items-center justify-center sm:justify-start gap-3 mb-3">
+                    <span className="px-3 py-1 rounded-full bg-[#1DB954]/10 text-[#1DB954] border border-[#1DB954]/20 text-[10px] font-bold tracking-widest uppercase">Now Playing</span>
+                    <span className="flex gap-1 items-end h-4">
+                      <span className="w-1.5 h-2 bg-[#1DB954] rounded-sm animate-[bounce_1s_infinite] delay-75"></span>
+                      <span className="w-1.5 h-4 bg-[#1DB954] rounded-sm animate-[bounce_1s_infinite] delay-150"></span>
+                      <span className="w-1.5 h-3 bg-[#1DB954] rounded-sm animate-[bounce_1s_infinite] delay-300"></span>
+                    </span>
+                  </div>
+                  <h4 className="text-white font-black text-3xl mb-1 tracking-tight">On My Mind</h4>
+                  <p className="text-slate-400 font-medium text-lg">Sansskar</p>
+                </div>
+
+                <a href="https://open.spotify.com/search/Sansskar" target="_blank" rel="noreferrer" className="mt-6 sm:mt-0 w-16 h-16 rounded-full bg-[#1DB954] text-black flex items-center justify-center hover:scale-110 hover:bg-[#1ed760] transition-all flex-shrink-0 shadow-[0_0_30px_rgba(29,185,84,0.4)] z-10">
+                  <Play size={28} className="ml-1" fill="currentColor" />
+                </a>
+              </div>
+
             </div>
           </div>
         </div>
@@ -253,6 +306,13 @@ const Portfolio = () => {
                         </span>
                       ))}
                     </div>
+                    {project.github && (
+                      <div className="mt-8">
+                        <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-cyan-400 transition-colors">
+                          <Github size={18} /> View Source Code
+                        </a>
+                      </div>
+                    )}
                   </div>
                   
                   {project.featured && (
@@ -340,29 +400,35 @@ const Portfolio = () => {
 
       {/* Contact Section */}
       <section id="contact" className="py-32 relative border-t border-white/5">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-black text-white tracking-tight mb-6">Let's build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">together.</span></h2>
             <p className="text-lg text-slate-400">Feel free to reach out for collaborations, opportunities, or just to say hi.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <a href="mailto:sanskarsharmamusic999@gmail.com" className="flex flex-col items-center justify-center p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-center group">
               <Mail className="text-white mb-4 group-hover:scale-110 transition-transform" size={28} />
               <h3 className="text-white font-bold mb-1">Email</h3>
               <p className="text-sm text-slate-500">Drop a message</p>
             </a>
 
-            <a href="tel:6296249951" className="flex flex-col items-center justify-center p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-center group">
-              <Phone className="text-white mb-4 group-hover:scale-110 transition-transform" size={28} />
-              <h3 className="text-white font-bold mb-1">Phone</h3>
-              <p className="text-sm text-slate-500">6296249951</p>
+            <a href="https://github.com/Cathhdyy" target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-center group">
+              <Github className="text-white mb-4 group-hover:scale-110 transition-transform" size={28} />
+              <h3 className="text-white font-bold mb-1">GitHub</h3>
+              <p className="text-sm text-slate-500">View repos</p>
             </a>
 
             <a href="https://www.linkedin.com/in/ssanskar" target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center p-10 rounded-3xl bg-cyan-500 text-black hover:bg-cyan-400 transition-all text-center group shadow-[0_0_30px_rgba(6,182,212,0.2)]">
               <Linkedin className="mb-4 group-hover:scale-110 transition-transform" size={28} />
               <h3 className="font-bold mb-1">LinkedIn</h3>
               <p className="text-sm opacity-80 flex items-center justify-center gap-1">Connect <ArrowUpRight size={14}/></p>
+            </a>
+
+            <a href="https://open.spotify.com/search/Sansskar" target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center p-10 rounded-3xl bg-[#1DB954]/10 border border-[#1DB954]/20 hover:bg-[#1DB954]/20 transition-all text-center group">
+              <Music className="text-[#1DB954] mb-4 group-hover:scale-110 transition-transform" size={28} />
+              <h3 className="text-white font-bold mb-1">Spotify</h3>
+              <p className="text-sm text-[#1DB954]">Listen to tracks</p>
             </a>
           </div>
         </div>

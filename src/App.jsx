@@ -4,7 +4,7 @@ import {
   BrainCircuit, Award, GraduationCap, ChevronDown, 
   Globe, Cpu, LayoutTemplate, Rocket, ArrowUpRight, 
   Terminal, Activity, Github, Music, Play, Download, Send,
-  User, AtSign, MessageSquare, Quote, AlertTriangle, Lightbulb
+  User, AtSign, MessageSquare, Quote, AlertTriangle, Lightbulb, Briefcase, Calendar
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -28,7 +28,7 @@ const Portfolio = () => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
       setIsScrolled(window.scrollY > 50);
-      const sections = ['home', 'about', 'projects', 'skills', 'education', 'words', 'failures', 'contact'];
+      const sections = ['home', 'about', 'projects', 'skills', 'education', 'journey', 'words', 'failures', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -104,6 +104,51 @@ const Portfolio = () => {
     }
   ];
 
+  const journeyTimeline = [
+    {
+      year: "2026 - Present",
+      role: "Platform Architect & AI Developer",
+      company: "Aura & Independent Projects",
+      description: "Designing intelligent matching algorithms and robust platform architectures to connect brands with creators efficiently.",
+      icon: <BrainCircuit size={20} />
+    },
+    {
+      year: "2025 - 2026",
+      role: "Machine Learning Researcher",
+      company: "Academic & Open Source",
+      description: "Explored advanced Vision Language Models (VLMs) and fine-tuned neural architectures for specialized data processing tasks.",
+      icon: <Cpu size={20} />
+    },
+    {
+      year: "2024 - 2025",
+      role: "Full Stack Web Developer",
+      company: "Freelance Projects",
+      description: "Developed and deployed responsive web applications and APIs using React, Python, and MongoDB for various independent clients.",
+      icon: <Server size={20} />
+    },
+    {
+      year: "2023 - Present",
+      role: "Music Producer",
+      company: "Sansskar",
+      description: "Releasing original music across major streaming platforms, translating creative intuition into polished digital audio production.",
+      icon: <Music size={20} />
+    },
+    {
+      year: "2022 - 2024",
+      role: "Backend & Automation Developer",
+      company: "Freelance / Self-Taught",
+      description: "Built and deployed automated systems like Class Alert Agent using Python, MongoDB, and Render to streamline daily operations.",
+      icon: <Terminal size={20} />
+    },
+    {
+      year: "2020 - 2022",
+      role: "The Beginning: Java",
+      company: "Self-Taught / Foundation",
+      description: "Wrote my very first lines of code. Exploring Java sparked my deep passion for logic, object-oriented programming, and the limitless possibilities of software engineering.",
+      icon: <Code size={20} />
+    }
+  ];
+
   const marqueeSkills = ['Artificial Intelligence', 'Machine Learning', 'Python', 'HTML', 'MongoDB', 'SMTP', 'Render', 'Web Development', 'Automation', 'Data Structures'];
 
   return (
@@ -145,7 +190,7 @@ const Portfolio = () => {
             Sanskar.
           </div>
           <div className="hidden md:flex space-x-8 text-sm font-medium">
-            {['Home', 'About', 'Projects', 'Skills', 'Education'].map((item) => (
+            {['Home', 'About', 'Projects', 'Skills', 'Education', 'Journey'].map((item) => (
               <button 
                 key={item}
                 onClick={() => scrollTo(item.toLowerCase())}
@@ -493,6 +538,56 @@ if __name__ == "__main__":
             <p className="text-slate-500 leading-relaxed max-w-2xl text-sm md:text-base">
               A comprehensive 4-year degree focusing on the foundational and advanced concepts of AI, Machine Learning algorithms, and modern software engineering practices to solve complex real-world problems.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience / Journey Timeline Section */}
+      <section id="journey" className="py-20 lg:py-32 relative z-10 border-t border-white/5 bg-[#050810]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-16 text-center">
+            <h2 className="text-sm font-bold tracking-widest text-cyan-400 uppercase mb-3">Experience</h2>
+            <h3 className="text-4xl font-bold text-white tracking-tight">My Journey</h3>
+          </div>
+
+          <div className="relative max-w-4xl mx-auto">
+            {/* Main vertical line */}
+            <div className="absolute left-[20px] md:left-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent transform md:-translate-x-1/2"></div>
+
+            <div className="space-y-12">
+              {journeyTimeline.map((item, idx) => (
+                <div key={idx} className={`relative flex flex-col md:flex-row items-start md:items-center ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''} gap-8 group`}>
+                  
+                  {/* Timeline Dot */}
+                  <div className="absolute left-[20px] md:left-1/2 top-0 md:top-1/2 w-10 h-10 rounded-full bg-[#0d1425] border-4 border-[#050810] flex items-center justify-center transform -translate-x-1/2 md:-translate-y-1/2 z-10 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:border-cyan-500/50 transition-colors duration-300">
+                    <div className="w-3 h-3 rounded-full bg-cyan-400 group-hover:shadow-[0_0_10px_rgba(6,182,212,0.8)] transition-shadow duration-300"></div>
+                  </div>
+
+                  {/* Empty space for alternating layout on Desktop */}
+                  <div className="hidden md:block md:w-1/2"></div>
+
+                  {/* Content Card */}
+                  <div className={`w-full md:w-1/2 pl-16 md:pl-0 ${idx % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                    <div className="p-8 rounded-[2rem] bg-[#0d1425]/40 backdrop-blur-md border border-white/10 hover:border-cyan-500/30 transition-all duration-300 group-hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)] relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-[50px] pointer-events-none group-hover:bg-cyan-500/10 transition-colors duration-500"></div>
+                      
+                      <div className="flex items-center gap-3 mb-4 text-cyan-400">
+                        <Calendar size={18} />
+                        <span className="text-sm font-bold tracking-widest uppercase">{item.year}</span>
+                      </div>
+                      <h4 className="text-2xl font-bold text-white mb-2">{item.role}</h4>
+                      <h5 className="text-lg font-medium text-slate-400 mb-4 flex items-center gap-2">
+                        <Briefcase size={18} /> {item.company}
+                      </h5>
+                      <p className="text-slate-500 leading-relaxed text-sm">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

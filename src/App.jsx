@@ -4,7 +4,7 @@ import {
   BrainCircuit, Award, GraduationCap, ChevronDown, 
   Globe, Cpu, LayoutTemplate, Rocket, ArrowUpRight, 
   Terminal, Activity, Github, Music, Play, Download, Send,
-  User, AtSign, MessageSquare, Quote
+  User, AtSign, MessageSquare, Quote, AlertTriangle, Lightbulb
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -28,7 +28,7 @@ const Portfolio = () => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
       setIsScrolled(window.scrollY > 50);
-      const sections = ['home', 'about', 'projects', 'skills', 'education', 'words', 'contact'];
+      const sections = ['home', 'about', 'projects', 'skills', 'education', 'words', 'failures', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -83,6 +83,24 @@ const Portfolio = () => {
       description: 'Built robust CRUD operations architecture using MongoDB and Python to efficiently manage and process backend data structures.',
       tags: ['Python', 'MongoDB', 'Backend', 'API'],
       featured: false
+    }
+  ];
+
+  const failuresAndLessons = [
+    {
+      failure: "Overcomplicating the first backend architecture.",
+      lesson: "I learned that simplicity scales best. Now, I prioritize clean, functional MVP structures using tools like MongoDB and Python before adding complex layers.",
+      color: "red"
+    },
+    {
+      failure: "Struggling with early AI model deployments.",
+      lesson: "Realized that deployment is half the battle. Mastered cloud platforms like Render and SMTP API integrations to ensure systems actually reach users.",
+      color: "orange"
+    },
+    {
+      failure: "Trying to learn every new framework at once.",
+      lesson: "Burnout taught me to focus on core concepts. Deeply understanding algorithms and data structures proved far more valuable than syntax memorization.",
+      color: "pink"
     }
   ];
 
@@ -480,7 +498,7 @@ if __name__ == "__main__":
       </section>
 
       {/* Words From Me Section */}
-      <section id="words" className="py-20 lg:py-32 relative z-10">
+      <section id="words" className="py-20 lg:py-32 relative z-10 border-t border-white/5">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-sm font-bold tracking-widest text-purple-400 uppercase mb-3">Words From Me</h2>
           <h3 className="text-4xl font-bold text-white tracking-tight mb-12 lg:mb-16">My Philosophy</h3>
@@ -500,6 +518,43 @@ if __name__ == "__main__":
               <span className="text-white font-bold tracking-widest uppercase text-xs md:text-sm">Sanskar Sharma</span>
               <div className="w-12 md:w-16 h-[2px] bg-gradient-to-l from-transparent to-purple-500/50"></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Failures & Lessons Section */}
+      <section id="failures" className="py-20 lg:py-32 relative z-10 border-t border-white/5 bg-white/[0.01]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-12 lg:mb-16 text-center lg:text-left">
+            <h2 className="text-sm font-bold tracking-widest text-red-400 uppercase mb-3">Embracing Setbacks</h2>
+            <h3 className="text-4xl font-bold text-white tracking-tight">Failures & Lessons</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {failuresAndLessons.map((item, idx) => (
+              <div key={idx} className={`p-8 rounded-[2rem] bg-[#0d1425]/40 backdrop-blur-xl border border-white/10 hover:border-${item.color}-500/30 transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden shadow-lg`}>
+                
+                {/* Subtle Background Glow on Hover */}
+                <div className={`absolute -top-20 -right-20 w-40 h-40 bg-${item.color}-500/10 rounded-full blur-[50px] pointer-events-none group-hover:bg-${item.color}-500/20 transition-colors duration-500`}></div>
+
+                {/* Failure Content */}
+                <div className="flex flex-col gap-4 mb-6 relative z-10">
+                  <div className={`w-12 h-12 rounded-xl bg-${item.color}-500/10 border border-${item.color}-500/20 flex items-center justify-center text-${item.color}-400 group-hover:scale-110 transition-transform shadow-inner`}>
+                    <AlertTriangle size={24} />
+                  </div>
+                  <h4 className="text-white font-bold text-lg leading-tight">{item.failure}</h4>
+                </div>
+                
+                {/* Divider */}
+                <div className="w-full h-px bg-gradient-to-r from-white/10 to-transparent mb-6"></div>
+                
+                {/* Lesson Content */}
+                <div className="flex gap-4 relative z-10">
+                  <Lightbulb className="text-yellow-400 shrink-0 mt-0.5 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" size={20} />
+                  <p className="text-slate-400 text-sm leading-relaxed">{item.lesson}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
